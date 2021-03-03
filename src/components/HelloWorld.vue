@@ -44,17 +44,62 @@
   </p>
   <a-card
     title="Card title"
-    :bordered="false"
     style="width: 300px"
   >
     <p>Card content</p>
     <p>Card content</p>
     <p>Card content</p>
   </a-card>
+  <a-cascader
+    v-model:value="value"
+    :options="options"
+    placeholder="Please select"
+  />
 </template>
 
 <script lang="ts">
 import { ref, defineComponent } from 'vue';
+
+interface Option {
+  value: string;
+  label: string;
+  children?: Option[];
+}
+
+const options: Option[] = [
+  {
+    value: 'zhejiang',
+    label: 'Zhejiang',
+    children: [
+      {
+        value: 'hangzhou',
+        label: 'Hangzhou',
+        children: [
+          {
+            value: 'xihu',
+            label: 'West Lake',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    value: 'jiangsu',
+    label: 'Jiangsu',
+    children: [
+      {
+        value: 'nanjing',
+        label: 'Nanjing',
+        children: [
+          {
+            value: 'zhonghuamen',
+            label: 'Zhong Hua Men',
+          },
+        ],
+      },
+    ],
+  },
+];
 
 export default defineComponent({
   name: 'HelloWorld',
@@ -66,7 +111,11 @@ export default defineComponent({
   },
   setup: () => {
     const count = ref(0);
-    return { count };
+    return {
+      count,
+      value: ref<string[]>([]),
+      options,
+    };
   },
 });
 </script>

@@ -1,4 +1,6 @@
 import { createApp } from 'vue';
+
+/* plugins */
 import Antd from 'ant-design-vue';
 
 /* project scss settings */
@@ -8,5 +10,6 @@ import './assets/scss/index.scss';
 import App from './App.vue';
 
 const app = createApp(App);
+
 app.use(Antd);
 app.mount('#app');
